@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Despesas</title>
+</head>
+
+<body>
+  <div id="app" class="layout">
+    <!-- Sidebar: resumo dos totais -->
+    <aside class="sidebar">
+      <h1 class="sidebar__titulo">Painel de Despesas</h1>
+
+      <section class="resumo-total">
+        <h2 class="resumo__rotulo">Total geral</h2>
+        <p class="resumo-total__valor" id="total-geral">R$ 0,00</p>
+      </section>
+
+      <section>
+        <h2 class="resumo__rotulo">Por categoria</h2>
+        <ul class="resumo-categorias">
+          <li class="resumo-categoria" data-categoria="Alimento">
+            <span class="resumo-categoria__nome">Alimento</span>
+            <span class="resumo-categoria__valor" data-total-categoria="Alimento">R$ 0,00</span>
+          </li>
+          <li class="resumo-categoria" data-categoria="Transporte">
+            <span class="resumo-categoria__nome">Transporte</span>
+            <span class="resumo-categoria__valor" data-total-categoria="Transporte">R$ 0,00</span>
+          </li>
+          <li class="resumo-categoria" data-categoria="Lazer">
+            <span class="resumo-categoria__nome">Lazer</span>
+            <span class="resumo-categoria__valor" data-total-categoria="Lazer">R$ 0,00</span>
+          </li>
+          <li class="resumo-categoria" data-categoria="Saúde">
+            <span class="resumo-categoria__nome">Saúde</span>
+            <span class="resumo-categoria__valor" data-total-categoria="Saúde">R$ 0,00</span>
+          </li>
+          <li class="resumo-categoria" data-categoria="Outros">
+            <span class="resumo-categoria__nome">Outros</span>
+            <span class="resumo-categoria__valor" data-total-categoria="Outros">R$ 0,00</span>
+          </li>
+        </ul>
+      </section>
+    </aside>
+
+    <main class="conteudo">
+      <!-- Card: adicionar despesa -->
+      <section class="card">
+        <h2 class="card__titulo">Adicionar despesa</h2>
+
+        <form id="form-despesa" class="formulario" novalidate>
+          <div class="campo campo--titulo">
+            <label for="input-titulo">Título</label>
+            <input type="text" id="input-titulo" placeholder="Ex.: Almoço" autocomplete="off" />
+          </div>
+
+          <div class="campo">
+            <label for="input-valor">Valor (R$)</label>
+            <input type="number" id="input-valor" placeholder="0,00" min="0.01" step="0.01" />
+          </div>
+
+          <div class="campo">
+            <label for="select-categoria">Categoria</label>
+            <select id="select-categoria">
+              <option value="" selected disabled>Selecione</option>
+              <option value="Alimento">Alimento</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Saúde">Saúde</option>
+              <option value="Outros">Outros</option>
+            </select>
+          </div>
+
+          <button type="submit" class="botao">Adicionar</button>
+        </form>
+
+        <p id="erro-formulario" class="formulario__erro" role="alert" hidden></p>
+      </section>
+
+      <!-- Lista de despesas -->
+      <section class="secao-lista">
+        <h2 class="secao__titulo">Despesas</h2>
+        <p id="lista-vazia" class="lista-vazia">Nenhuma despesa adicionada ainda.</p>
+        <ul id="lista-despesas" class="lista-despesas"></ul>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modelo de um item da lista (clonado pelo TypeScript) -->
+  <template id="template-despesa">
+    <li class="despesa">
+      <span class="despesa__titulo"></span>
+      <span class="despesa__categoria"></span>
+      <span class="despesa__valor"></span>
+      <button type="button" class="despesa__remover">Remover</button>
+    </li>
+  </template>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
