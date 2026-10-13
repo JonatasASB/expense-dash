@@ -1,0 +1,359 @@
+/* ---------- Variáveis ---------- */
+:root {
+  --cor-fundo: #f4f5f7;
+  --cor-superficie: #ffffff;
+  --cor-sidebar: #1f2937;
+  --cor-sidebar-texto: #f9fafb;
+  --cor-sidebar-suave: #9ca3af;
+  --cor-texto: #1f2937;
+  --cor-texto-suave: #6b7280;
+  --cor-borda: #e5e7eb;
+  --cor-primaria: #4f46e5;
+  --cor-primaria-hover: #4338ca;
+  --cor-erro: #b91c1c;
+  --cor-erro-fundo: #fef2f2;
+
+  /* Cores das categorias */
+  --cor-alimento: #f59e0b;
+  --cor-transporte: #3b82f6;
+  --cor-lazer: #a855f7;
+  --cor-saude: #10b981;
+  --cor-outros: #6b7280;
+
+  --espaco-1: 0.25rem;
+  --espaco-2: 0.5rem;
+  --espaco-3: 1rem;
+  --espaco-4: 1.5rem;
+  --espaco-5: 2rem;
+
+  --raio: 8px;
+  --sombra: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  color: var(--cor-texto);
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--cor-fundo);
+}
+
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- Layout ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-5);
+  padding: var(--espaco-5) var(--espaco-4);
+  background: var(--cor-sidebar);
+  color: var(--cor-sidebar-texto);
+}
+
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-5);
+  width: 100%;
+  max-width: 900px;
+  padding: var(--espaco-5);
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar__titulo {
+  font-size: 1.25rem;
+}
+
+.resumo__rotulo {
+  margin-bottom: var(--espaco-2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cor-sidebar-suave);
+}
+
+.resumo-total__valor {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.resumo-categorias {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+}
+
+.resumo-categoria {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-2);
+  padding: var(--espaco-2) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Bolinha colorida antes do nome da categoria */
+.resumo-categoria__nome::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: var(--espaco-2);
+  border-radius: 50%;
+  background: var(--cor-categoria);
+}
+
+.resumo-categoria__valor {
+  font-weight: 600;
+  text-align: right;
+}
+
+/* ---------- Cores por categoria (sidebar e lista) ---------- */
+[data-categoria="Alimento"] {
+  --cor-categoria: var(--cor-alimento);
+}
+
+[data-categoria="Transporte"] {
+  --cor-categoria: var(--cor-transporte);
+}
+
+[data-categoria="Lazer"] {
+  --cor-categoria: var(--cor-lazer);
+}
+
+[data-categoria="Saúde"] {
+  --cor-categoria: var(--cor-saude);
+}
+
+[data-categoria="Outros"] {
+  --cor-categoria: var(--cor-outros);
+}
+
+/* ---------- Card do formulário ---------- */
+.card {
+  padding: var(--espaco-4);
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+.card__titulo,
+.secao__titulo {
+  margin-bottom: var(--espaco-3);
+  font-size: 1.1rem;
+}
+
+.formulario {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  align-items: end;
+  gap: var(--espaco-3);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-1);
+  min-width: 0;
+}
+
+.campo label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  padding: var(--espaco-2) var(--espaco-3);
+  font: inherit;
+  color: inherit;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: 2px solid var(--cor-primaria);
+  outline-offset: 1px;
+  border-color: var(--cor-primaria);
+}
+
+.botao {
+  padding: var(--espaco-2) var(--espaco-4);
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--cor-primaria);
+  border: none;
+  border-radius: var(--raio);
+  cursor: pointer;
+}
+
+.botao:hover {
+  background: var(--cor-primaria-hover);
+}
+
+.botao:focus-visible {
+  outline: 2px solid var(--cor-primaria);
+  outline-offset: 2px;
+}
+
+.formulario__erro {
+  margin-top: var(--espaco-3);
+  padding: var(--espaco-2) var(--espaco-3);
+  font-size: 0.9rem;
+  color: var(--cor-erro);
+  background: var(--cor-erro-fundo);
+  border-radius: var(--raio);
+}
+
+/* ---------- Lista de despesas ---------- */
+.lista-vazia {
+  padding: var(--espaco-4);
+  text-align: center;
+  color: var(--cor-texto-suave);
+  background: var(--cor-superficie);
+  border: 1px dashed var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.lista-despesas {
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+.lista-despesas:empty {
+  display: none;
+}
+
+.despesa {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: var(--espaco-3);
+  padding: var(--espaco-3) var(--espaco-4);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.despesa:last-child {
+  border-bottom: none;
+}
+
+.despesa__titulo {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.despesa__categoria {
+  padding: var(--espaco-1) var(--espaco-2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cor-categoria);
+  border: 1px solid var(--cor-categoria);
+  border-radius: 999px;
+}
+
+.despesa__valor {
+  min-width: 7rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.despesa__remover {
+  padding: var(--espaco-1) var(--espaco-2);
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--cor-erro);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--raio);
+  cursor: pointer;
+}
+
+.despesa__remover:hover {
+  background: var(--cor-erro-fundo);
+  border-color: var(--cor-erro);
+}
+
+.despesa__remover:focus-visible {
+  outline: 2px solid var(--cor-erro);
+  outline-offset: 2px;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 768px) {
+  /* Ordem no mobile: card de adicionar → resumo → lista */
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-4);
+    padding-bottom: var(--espaco-4);
+  }
+
+  /* Deixa card e lista virarem filhos diretos do .layout para poder ordenar */
+  .conteudo {
+    display: contents;
+  }
+
+  .card {
+    order: 1;
+    margin: var(--espaco-3) var(--espaco-3) 0;
+  }
+
+  .sidebar {
+    order: 2;
+    padding: var(--espaco-4) var(--espaco-3);
+  }
+
+  .secao-lista {
+    order: 3;
+    margin: 0 var(--espaco-3);
+  }
+
+  .formulario {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .campo--titulo,
+  .botao {
+    grid-column: 1 / -1;
+  }
+
+  .despesa {
+    grid-template-columns: 1fr auto;
+    padding: var(--espaco-3);
+  }
+
+  .despesa__valor {
+    min-width: 0;
+  }
+}
